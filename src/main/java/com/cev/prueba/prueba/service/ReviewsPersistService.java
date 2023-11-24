@@ -25,10 +25,13 @@ public class ReviewsPersistService {
         this.reviewsRepository = reviewsRepository;
         this.peliculasRepository = peliculasRepository;
     }
+
     final List<Review> reviews = new ArrayList<>();
+
     public Review getReview(Long id) {
         return reviewsRepository.findById(id).orElse(null);
     }
+
     @Transactional
     public Long addReview(Review review) {
         if (review.getPelicula() == null || review.getPelicula().getId() == null) {
@@ -43,15 +46,18 @@ public class ReviewsPersistService {
     public List<Review> getReviews() {
         return reviews;
     }
+
     public void guardaReview(Long id, Review review ) {
         Review reviewGuardado = reviewsRepository.getReferenceById(id);
         reviewGuardado.setReview(review.getReview());
         reviewGuardado.setPuntuacion(review.getPuntuacion());
         reviewsRepository.save(reviewGuardado);
     }
+
     public void borraReview(Long id) {
         reviewsRepository.deleteById(id);
     }
+
     public List<Review> getReviewsPorMayorPuntuacion() {
         return reviewsRepository.findByOrderByPuntuacionDesc();
     }

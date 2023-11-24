@@ -34,18 +34,18 @@ public class ReviewController {
     }
 
     @PostMapping(path = "/api/reviews")
-    public Long altaReview(@RequestBody Review review) {
+    public Long addReview(@RequestBody Review review) {
         return reviewsPersistService.addReview(review);
     }
 
     @PutMapping(path = "/api/reviews/{id}")
-    Review modificaReview(@RequestBody Review review, @PathVariable Long id) {
+    Review changeReview(@RequestBody Review review, @PathVariable Long id) {
         reviewsPersistService.guardaReview(id, review);
         return review;
     }
 
     @DeleteMapping(path = "/api/reviews/{id}")
-    String borraReview(@PathVariable Long id) {
+    String deleteReview(@PathVariable Long id) {
         reviewsPersistService.borraReview(id);
         return("OK");
     }

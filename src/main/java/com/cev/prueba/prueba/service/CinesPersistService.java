@@ -66,6 +66,7 @@ public class CinesPersistService {
             throw new RuntimeException("Cine no encontrado con ID: " + id);
         }
     }
+
     public List<Cine> getCinesPorPrecioAsc() {
         return cinesRepository.findByOrderByPrecioAsc();
     }

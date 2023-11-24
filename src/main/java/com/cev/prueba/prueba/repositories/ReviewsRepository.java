@@ -8,4 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ReviewsRepository extends JpaRepository<Review, Long>
-{ List<Review> findByOrderByPuntuacionDesc();}
+{
+    List<Review> findByOrderByPuntuacionDesc();
+}

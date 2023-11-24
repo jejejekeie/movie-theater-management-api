@@ -25,11 +25,9 @@ public class Review {
     public Review() {
     }
 
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public Long getId() {
         return id;
     }
@@ -51,7 +49,6 @@ public class Review {
     public Pelicula getPelicula() {
         return pelicula;
     }
-
 
     @Override
     public String toString() {

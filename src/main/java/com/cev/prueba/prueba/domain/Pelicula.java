@@ -81,12 +81,6 @@ public class Pelicula {
 	public List<Cine> getCines() {
 		return cines;
 	}
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
-	public List<Review> getReviews() {
-		return reviews;
-	}
 
 	@Override
 	public String toString() {
@@ -101,16 +95,4 @@ public class Pelicula {
 				", reviews=" + reviews + "]";
 	}
 
-	public void addCine(Cine cine) {
-		if (!this.cines.contains(cine)) {
-			this.cines.add(cine);
-			cine.getPeliculas().add(this);
-		}
-	}
-	public void removeCine(Cine cine) {
-		if (this.cines.contains(cine)) {
-			this.cines.remove(cine);
-			cine.getPeliculas().remove(this);
-		}
-	}
 }

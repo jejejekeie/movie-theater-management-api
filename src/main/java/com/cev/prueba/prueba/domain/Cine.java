@@ -31,7 +31,6 @@ public class Cine {
             name = "cine_pelicula",
             joinColumns = @JoinColumn(name = "cine_id"),
             inverseJoinColumns = @JoinColumn(name = "pelicula_id"))
-    //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIgnoreProperties("cines")
     private List<Pelicula> peliculas;
 
@@ -39,7 +38,6 @@ public class Cine {
     public void setId(Long id) {
         this.id = id;
     }
-
     public Long getId() {
         return id;
     }
@@ -79,21 +77,6 @@ public class Cine {
     public List<Pelicula> getPeliculas() {
         return peliculas;
     }
-
-    public void addPelicula(Pelicula pelicula) {
-        if (!this.peliculas.contains(pelicula)) {
-            this.peliculas.add(pelicula);
-            pelicula.getCines().add(this);
-        }
-    }
-
-    public void removePelicula(Pelicula pelicula) {
-        if (this.peliculas.contains(pelicula)) {
-            this.peliculas.remove(pelicula);
-            pelicula.getCines().remove(this);
-        }
-    }
-
 
     @Override
     public String toString() {

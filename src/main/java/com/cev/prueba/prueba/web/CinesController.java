@@ -24,32 +24,31 @@ public class CinesController {
         this.cinesPersistService = cinesPersistService;
     }
 
-    @GetMapping(path = "/api/cines")
-    List<Cine> getCines(@RequestParam(required = false) String nombre) {
-        return cinesPersistService.getCines();
-    }
-
     @GetMapping(path = "/api/cines/{id}")
     Cine getCine(@PathVariable Long id)
     {
         return cinesPersistService.getCine(id);
     }
 
+    @GetMapping(path = "/api/cines")
+    List<Cine> getCines(@RequestParam(required = false) String nombre) {
+        return cinesPersistService.getCines();
+    }
+
     @PostMapping(path = "/api/cines")
-    Long altaCine(@RequestBody Cine cine)
+    Long addCine(@RequestBody Cine cine)
     {
         return cinesPersistService.addCine(cine);
     }
 
     @PutMapping(path = "/api/cines/{id}")
-    Cine modificaCine(@RequestBody Cine cine, @PathVariable Long id)
-    {
+    Cine changeCine(@RequestBody Cine cine, @PathVariable Long id) {
         cinesPersistService.guardaCine(id, cine);
         return cine;
     }
 
     @DeleteMapping(path = "/api/cines/{id}")
-    public ResponseEntity<String> borraCine(@PathVariable Long id) {
+    public ResponseEntity<String> deleteCine(@PathVariable Long id) {
         try {
             cinesPersistService.borraCine(id);
             return ResponseEntity.ok("OK");
@@ -59,8 +58,7 @@ public class CinesController {
     }
 
     @GetMapping(path = "cineHeader")
-    ResponseEntity<List<Cine>> getCinesHeader()
-    {
+    ResponseEntity<List<Cine>> getCinesHeader() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("MiHeaderRespuesta", "HeaderRespuesta");
 

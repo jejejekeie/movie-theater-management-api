@@ -56,40 +56,4 @@ public class PeliculasPersistService {
         peliculasRepository.deleteById(id);
     }
 
-    @Transactional
-    public void addCine(Long peliculaId, Long cineId) {
-        Optional<Pelicula> peliculaOptional = peliculasRepository.findById(peliculaId);
-        Optional<Cine> cineOptional = cinesRepository.findById(cineId);
-
-        if (peliculaOptional.isPresent() && cineOptional.isPresent()) {
-            Pelicula pelicula = peliculaOptional.get();
-            Cine cine = cineOptional.get();
-
-            if (!pelicula.getCines().contains(cine)) {
-                pelicula.getCines().add(cine);
-                cine.getPeliculas().add(pelicula); // Add this line
-                peliculasRepository.save(pelicula);
-                cinesRepository.save(cine); // Save Cine entity as well
-            } else {
-                throw new RuntimeException("El cine ya está asociado con esta película");
-            }
-        } else {
-            throw new RuntimeException("Película o Cine no encontrado");
-        }
-    }
-
-    @Transactional
-    public void borraCine(Long id) {
-        Optional<Cine> cineOptional = cinesRepository.findById(id);
-        if (cineOptional.isPresent()) {
-            Cine cine = cineOptional.get();
-            for (Pelicula pelicula : cine.getPeliculas()) {
-                pelicula.getCines().remove(cine);
-            }
-            cinesRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("Cine no encontrado con ID: " + id);
-        }
-    }
-
 }

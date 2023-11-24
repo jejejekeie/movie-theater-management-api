@@ -50,15 +50,14 @@ public class PeliculasController {
 		return new ResponseEntity<>(pelicula, HttpStatus.CREATED);
 	}
 
-
 	@PutMapping(path = "/api/peliculas/{id}")
-	Pelicula modificaPelicula(@RequestBody Pelicula pelicula,@PathVariable Long id) {
+	Pelicula changePelicula(@RequestBody Pelicula pelicula,@PathVariable Long id) {
 		peliculasPersistService.guardaPelicula(id, pelicula);
 		return pelicula;		
 	}
 
 	@DeleteMapping(path="/api/peliculas/{id}")
-	String borraPelicula(@PathVariable Long id) {
+	String deletePelicula(@PathVariable Long id) {
 		peliculasPersistService.borraPelicula(id);
 		return("OK");
 	}
@@ -69,16 +68,6 @@ public class PeliculasController {
 		headers.add("MiHeaderRespuesta", "HeaderRespuesta");
 		
 		return ResponseEntity.ok().headers(headers).body(peliculasPersistService.getPeliculas());
-	}
-
-	@DeleteMapping(path = "/api/cine/{id}")
-	public ResponseEntity<String> borraCine(@PathVariable Long id) {
-		try {
-			peliculasPersistService.borraCine(id);
-			return ResponseEntity.ok("Cine borrado con éxito");
-		} catch (RuntimeException e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
 	}
 
 	@GetMapping(path = "/api/cines/precioAsc")

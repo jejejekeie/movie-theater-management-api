@@ -1,0 +1,9 @@
+{
+  "name": "EvaParacuellosRestController",
+  "version": "1.0.0",
+  "dependencies": {
+    "@angular/core": "16.2.12",
+    "@angular/compiler": "16.2.12",
+    "@angular/cli": "16.2.0"
+  }
+}
